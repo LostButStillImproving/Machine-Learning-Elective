@@ -1,0 +1,39 @@
+a. What to do with missing feature values?
+    You can either replace missing values, drop rows with missing values, or drop the entire column
+
+b. How is this done in housing project?
+    sample_incomplete_rows.dropna(subset=["total_bedrooms"])
+
+c. What is an Imputer?
+    A class that transforms a dataset to fix missing values
+
+Show code how to use SimpleImputer
+
+from sklearn.impute import SimpleImputer
+imputer = SimpleImputer(strategy="median")
+housing_num = housing.select_dtypes(include=[np.number])
+imputer.fit(housing_num)
+X = imputer.transform(housing_num)
+housing_tr = pd.DataFrame(X, columns=housing_num.columns,
+                          index=housing.index)
+d. How to handle text and categorical attributes?
+    You can convert the attributes into numerical values, using fx onehotencoder or ordinalencoder
+e. Explain the idea behind OneHotEncoder.
+    sets the attribute to 1 if present, otherwise 0
+f. What is the idea behind min-max scaling and standard scaling?
+    To scale features into comparable sizes
+g. Why is scaling needed needed?
+    Such that the machine learning alg works better, as larger values will be scaled down, and wont have too big effect on the regressions
+h. If you use DecisionTreeRegression you get an error rmse = 0.0.
+Happy? Is there a better evaluation?
+    Not Happy. Indicates overfitting
+
+i. What is fine tuning?
+What is the meaning of the hyper parameters:
+n_estimators
+bootstraping
+in RandomForest model.
+j. Features have different importance in the model.
+Which features have low importance in housing project?
+What to do with them?
+k. What is the idea behind cross validaton?
